@@ -13,9 +13,7 @@ let speedFactor = 100;
 let unsorted_array = new Array(numOfBars);
 // const animated_col = "rgb(255, 84, 84)";
 const animated_col = getComputedStyle(document.documentElement).getPropertyValue('--stick');
-const stick_col_animating = getComputedStyle(document.documentElement).getPropertyValue('--stick-animating`');
-
-
+const stick_col_animating = "red";
 function myFunction() {
   var element = document.body;
   if (element.classList.contains("light")) {
@@ -101,10 +99,10 @@ async function bubbleSort(array) {
         array[j] = array[j + 1];
         array[j + 1] = temp;
         bars[j].style.height = array[j] * heightFactor + "px";
-        bars[j].style.backgroundColor = "lightgreen";
+        bars[j].style.backgroundColor = stick_col_animating;
         //bars[j].innerText = array[j];
         bars[j + 1].style.height = array[j + 1] * heightFactor + "px";
-        bars[j + 1].style.backgroundColor = "lightgreen";
+        bars[j + 1].style.backgroundColor = stick_col_animating;
         //bars[j + 1].innerText = array[j + 1];
         await sleep(speedFactor);
       }
@@ -119,10 +117,10 @@ async function swap(items, leftIndex, rightIndex, bars) {
   items[leftIndex] = items[rightIndex];
   items[rightIndex] = temp;
   bars[leftIndex].style.height = items[leftIndex] * heightFactor + "px";
-  bars[leftIndex].style.backgroundColor = "lightgreen";
+  bars[leftIndex].style.backgroundColor = stick_col_animating;
   //bars[leftIndex].innerText = items[leftIndex];
   bars[rightIndex].style.height = items[rightIndex] * heightFactor + "px";
-  bars[rightIndex].style.backgroundColor = "lightgreen";
+  bars[rightIndex].style.backgroundColor = stick_col_animating;
   //bars[rightIndex].innerText = items[rightIndex];
   await sleep(speedFactor);
 }
@@ -204,7 +202,7 @@ async function InsertionSort(array) {
     }
     array[j + 1] = key;
     bars[j + 1].style.height = array[j + 1] * heightFactor + "px";
-    bars[j + 1].style.backgroundColor = "lightgreen";
+    bars[j + 1].style.backgroundColor = stick_col_animating;
     //bars[j + 1].innerText = array[j + 1];
     await sleep(speedFactor);
   }
@@ -291,7 +289,7 @@ async function mergeSort(arr) {
       arr[k] = left[i];
       i++;
       // bars[k].style.height = arr[k] * heightFactor + "px";
-      // bars[k].style.backgroundColor = "lightgreen";
+      // bars[k].style.backgroundColor = stick_col_animating;
       // bars[k].innerText = arr[k];
       //await sleep(speedFactor);
     } else {
@@ -305,14 +303,14 @@ async function mergeSort(arr) {
     //shift to right side
     //console.log(k);
     //bars[k].style.height = arr[k] * heightFactor + "px";
-    //bars[k].style.backgroundColor = "lightgreen";
+    //bars[k].style.backgroundColor = stick_col_animating;
 
     // bars[k + middle].style.height = arr[k] * heightFactor + "px";
     // bars[k + middle].style.backgroundColor = "yellow";
 
     //visualize it for right and left side
     bars[k].style.height = arr[k] * heightFactor + "px";
-    bars[k].style.backgroundColor = "lightgreen";
+    bars[k].style.backgroundColor = stick_col_animating;
     if (k + arr.length < bars.length) {
       bars[k + arr.length].style.height = arr[k] * heightFactor + "px";
       console.log(arr[k] * heightFactor);
@@ -327,7 +325,7 @@ async function mergeSort(arr) {
   while (i < left.length) {
     arr[k] = left[i];
     bars[k].style.height = arr[k] * heightFactor + "px";
-    bars[k].style.backgroundColor = "lightgreen";
+    bars[k].style.backgroundColor = stick_col_animating;
     await sleep(speedFactor);
     i++;
     k++;
@@ -336,7 +334,7 @@ async function mergeSort(arr) {
   while (j < right.length) {
     arr[k] = right[j];
     bars[k].style.height = arr[k] * heightFactor + "px";
-    bars[k].style.backgroundColor = "lightgreen";
+    bars[k].style.backgroundColor = stick_col_animating;
     await sleep(speedFactor);
     j++;
     k++;
@@ -344,7 +342,7 @@ async function mergeSort(arr) {
 
   // for (let i = 0; i < arr.length; i++) {
   //   bars[i].style.height = arr[i] * heightFactor + "px";
-  //   bars[i].style.backgroundColor = "lightgreen";
+  //   bars[i].style.backgroundColor = stick_col_animating;
   //   await sleep(speedFactor);
   // }
 
