@@ -4,12 +4,32 @@ let bars_container = document.getElementById("bars_container");
 let select_algo = document.getElementById("algo");
 let speed = document.getElementById("speed");
 let slider = document.getElementById("slider");
+let theme = document.getElementById("checkbox");
 let minRange = 1;
 let maxRange = slider.value;
 let numOfBars = slider.value;
-let heightFactor = 4;
+let heightFactor = 5;
 let speedFactor = 100;
 let unsorted_array = new Array(numOfBars);
+// const animated_col = "rgb(255, 84, 84)";
+const animated_col = getComputedStyle(document.documentElement).getPropertyValue('--stick');
+const stick_col_animating = getComputedStyle(document.documentElement).getPropertyValue('--stick-animating`');
+
+
+function myFunction() {
+  var element = document.body;
+  if (element.classList.contains("light")) {
+    element.classList.remove("light");
+    element.classList.add("dark");
+  }else{
+    element.classList.remove("dark");
+    element.classList.add("light");
+  }
+}
+
+theme.addEventListener("click", function () {
+  myFunction();
+});
 
 slider.addEventListener("input", function () {
   numOfBars = slider.value;
@@ -74,7 +94,7 @@ async function bubbleSort(array) {
       if (array[j] > array[j + 1]) {
         for (let k = 0; k < bars.length; k++) {
           if (k !== j && k !== j + 1) {
-            bars[k].style.backgroundColor = "aqua";
+            bars[k].style.backgroundColor = animated_col;
           }
         }
         let temp = array[j];
@@ -110,11 +130,11 @@ async function partition(items, left, right) {
   let bars = document.getElementsByClassName("bar");
   let pivotIndex = Math.floor((right + left) / 2);
   var pivot = items[pivotIndex]; //middle element
-  bars[pivotIndex].style.backgroundColor = "red";
+  bars[pivotIndex].style.backgroundColor = stick_col_animating;
 
   for (let i = 0; i < bars.length; i++) {
     if (i != pivotIndex) {
-      bars[i].style.backgroundColor = "aqua";
+      bars[i].style.backgroundColor = animated_col;
     }
   }
 
@@ -152,7 +172,7 @@ async function quickSort(items, left, right) {
   }
 
   for (let i = 0; i < bars.length; i++) {
-    bars[i].style.backgroundColor = "aqua";
+    bars[i].style.backgroundColor = animated_col;
   }
   return items;
 }
@@ -171,13 +191,13 @@ async function InsertionSort(array) {
     while (j >= 0 && array[j] > key) {
       array[j + 1] = array[j];
       bars[j + 1].style.height = array[j + 1] * heightFactor + "px";
-      bars[j + 1].style.backgroundColor = "red";
+      bars[j + 1].style.backgroundColor = stick_col_animating;
       //bars[j + 1].innerText = array[j + 1];
       await sleep(speedFactor);
 
       for (let k = 0; k < bars.length; k++) {
         if (k != j + 1) {
-          bars[k].style.backgroundColor = "aqua";
+          bars[k].style.backgroundColor = animated_col;
         }
       }
       j = j - 1;
@@ -190,7 +210,7 @@ async function InsertionSort(array) {
   }
 
   for (let k = 0; k < bars.length; k++) {
-    bars[k].style.backgroundColor = "aqua";
+    bars[k].style.backgroundColor = animated_col;
   }
   return array;
 }
@@ -207,7 +227,7 @@ async function HeapSort(array) {
     await heapify(array, i, 0);
   }
   for (let k = 0; k < bars.length; k++) {
-    bars[k].style.backgroundColor = "aqua";
+    bars[k].style.backgroundColor = animated_col;
     await sleep(speedFactor);
   }
   return array;
@@ -236,13 +256,13 @@ async function swap(array, i, j, bars) {
   array[j] = temp;
   bars[i].style.height = array[i] * heightFactor + "px";
   bars[j].style.height = array[j] * heightFactor + "px";
-  bars[i].style.backgroundColor = "red";
-  bars[j].style.backgroundColor = "red";
+  bars[i].style.backgroundColor = stick_col_animating;
+  bars[j].style.backgroundColor = stick_col_animating;
   await sleep(speedFactor);
 
   for (let k = 0; k < bars.length; k++) {
     if (k != i && k != j) {
-      bars[k].style.backgroundColor = "aqua";
+      bars[k].style.backgroundColor = animated_col;
     }
   }
   //bars[i].innerText = array[i];
@@ -329,7 +349,7 @@ async function mergeSort(arr) {
   // }
 
   for (let k = 0; k < bars.length; k++) {
-    bars[k].style.backgroundColor = "aqua";
+    bars[k].style.backgroundColor = animated_col;
   }
 
   return arr;
